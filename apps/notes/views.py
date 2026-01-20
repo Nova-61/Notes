@@ -42,7 +42,7 @@ class NoteDetailView(generics.RetrieveUpdateDestroyAPIView):
     
     def destroy(self, request, *args, **kwargs):
         # Обработка DELETE-запроса для удаления заметки
-        instance = self.get_object
+        instance = self.get_object()
         self.perform_destroy(instance)
         return Response(
             {'message': 'Note deleted successfully.'},

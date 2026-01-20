@@ -25,5 +25,5 @@ class NoteCreateSerializer(NoteSerializer):
 
 class NoteUpdateSerializer(NoteSerializer):
     # Для обновления заметок, делает поля необязательными
-    title = serializers.Charfield(required=False)
-    conent = serializers.Charfield(required=False)
+    title = serializers.CharField(required=False)
+    conent = serializers.CharField(required=False)
