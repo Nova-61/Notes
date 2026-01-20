@@ -1,0 +1,94 @@
+@import "tailwindcss";
+
+/* Custom CSS variables - Warm color palette */
+:root {
+  /* Primary Colors */
+  --color-white: #ffffff;
+  --color-beige-light: #f5f1ed;
+  --color-beige: #f0ebe7;
+  --color-beige-dark: #e8ddd5;
+  --color-brown-light: #d4a574;
+  --color-brown: #a67c52;
+  --color-brown-dark: #8b6f47;
+  --color-brown-darker: #6b5844;
+
+  /* Text colors */
+  --color-text-dark: #3d3d3d;
+  --color-text-muted: #7a7a7a;
+  --color-text-light: #999999;
+
+  /* Backgrounds */
+  --color-background: #ffffff;
+  --color-background-soft: #f5f1ed;
+  --color-background-mute: #f0ebe7;
+
+  /* Borders and accents */
+  --color-border: #e8ddd5;
+  --color-border-hover: #d4a574;
+  --color-accent: #a67c52;
+  --color-accent-hover: #8b6f47;
+
+  --section-gap: 160px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  font-weight: normal;
+}
+
+body {
+  min-height: 100vh;
+  color: var(--color-text-dark);
+  background: var(--color-background-soft);
+  transition:
+    color 0.3s ease,
+    background-color 0.3s ease;
+  line-height: 1.6;
+  font-family:
+    'Segoe UI',
+    Roboto,
+    -apple-system,
+    BlinkMacSystemFont,
+    Oxygen,
+    Ubuntu,
+    Cantarell,
+    'Fira Sans',
+    'Droid Sans',
+    'Helvetica Neue',
+    sans-serif;
+  font-size: 15px;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Ensure Tailwind utilities work properly */
+@layer utilities {
+  .animate-spin {
+    animation: spin 1s linear infinite;
+  }
+  
+  .text-white {
+    --tw-text-opacity: 1;
+    color: rgb(255 255 255 / var(--tw-text-opacity));
+  }
+  
+  .bg-blue-600 {
+    --tw-bg-opacity: 1;
+    background-color: rgb(37 99 235 / var(--tw-bg-opacity));
+  }
+  
+  .hover\:bg-blue-700:hover {
+    --tw-bg-opacity: 1;
+    background-color: rgb(29 78 216 / var(--tw-bg-opacity));
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

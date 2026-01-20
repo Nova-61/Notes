@@ -1,0 +1,24 @@
+@import './base.css';
+
+#app {
+  width: 100%;
+  min-height: 100vh;
+  font-weight: normal;
+}
+
+a,
+.brown-link {
+  text-decoration: none;
+  color: var(--color-accent);
+  transition: 0.3s ease;
+  padding: 3px;
+  font-weight: 500;
+}
+
+@media (hover: hover) {
+  a:hover {
+    color: var(--color-accent-hover);
+    background-color: rgba(212, 165, 116, 0.1);
+    border-radius: 2px;
+  }
+}
