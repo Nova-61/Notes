@@ -1,4 +1,3 @@
-<!-- frontend/src/views/HomeView.vue -->
 <script setup>
 import { RouterLink } from 'vue-router'
 import { useNotesStore } from '@/stores/notes'
@@ -7,144 +6,132 @@ import { onMounted } from 'vue'
 const notesStore = useNotesStore()
 
 onMounted(() => {
-  // Загружаем заметки для показа статистики
   notesStore.fetchNotes()
 })
 </script>
 
 <template>
-  <div class="min-h-screen" style="background: linear-gradient(135deg, #f5f1ed 0%, #f0ebe7 100%)">
-    <div class="w-full px-4 sm:px-6 lg:px-8 py-16">
-      <!-- Hero Section -->
-      <div class="text-center mb-20">
-        <h1 class="text-5xl md:text-7xl font-bold mb-6" style="color: #6b5844;">
-          Добро пожаловать в 📝
-          <span style="background: linear-gradient(135deg, #a67c52 0%, #d4a574 100%); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">SNotes</span>
-        </h1>
-        <p class="text-xl mb-12 max-w-3xl mx-auto" style="color: #999999;">
-          Самое красивое и удобное приложение для создания, редактирования и управления вашими заметками с теплой и уютной палитрой.
-        </p>
-        
-        <div class="flex flex-col sm:flex-row gap-6 justify-center">
-          <RouterLink 
-            to="/notes" 
-            class="px-10 py-4 rounded-xl font-bold text-lg transition-all duration-300 flex items-center justify-center gap-2 shadow-lg hover:shadow-xl transform hover:scale-105"
-            style="background: linear-gradient(135deg, #a67c52 0%, #8b6f47 100%); color: white;"
-          >
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-            </svg>
-            Мои заметки
-          </RouterLink>
-          
-          <RouterLink 
-            to="/notes/create" 
-            class="px-10 py-4 rounded-xl font-bold text-lg transition-all duration-300 flex items-center justify-center gap-2 shadow-lg hover:shadow-xl transform hover:scale-105"
-            style="background: white; color: #a67c52; border: 2px solid #d4a574;"
-          >
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
-            </svg>
-            Создать заметку
-          </RouterLink>
+  <div class="min-h-screen" style="background: #f8f7f5;">
+    <div class="w-full px-4 sm:px-6 lg:px-8">
+      <div class="hero relative w-full py-12 sm:py-20 md:py-32 lg:py-40" style="background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%); border-radius: 0 0 0 0;">
+        <div class="max-w-6xl mx-auto">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
+            <div>
+              <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-4 sm:mb-6 leading-tight" style="color: white;">
+                Организуйте свои мысли
+              </h1>
+              <p class="text-base sm:text-lg md:text-xl mb-8 md:mb-10 leading-relaxed" style="color: #d0d0d0;">
+                Простое и эффективное приложение для создания, редактирования и управления вашими заметками. Профессиональный инструмент с красивым интерфейсом.
+              </p>
+              <div class="flex flex-col sm:flex-row gap-4">
+                <RouterLink 
+                  to="/notes" 
+                  class="px-8 sm:px-10 py-3.5 sm:py-4 rounded-lg font-bold text-base sm:text-lg transition-all duration-300 flex items-center justify-center gap-2 shadow-xl hover:shadow-2xl transform hover:scale-105 text-white"
+                  style="background: #FF5722;"
+                >
+                  <svg class="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+                  </svg>
+                  Мои заметки
+                </RouterLink>
+                
+                <RouterLink 
+                  to="/notes/create" 
+                  class="px-8 sm:px-10 py-3.5 sm:py-4 rounded-lg font-bold text-base sm:text-lg transition-all duration-300 flex items-center justify-center gap-2 shadow-xl hover:shadow-2xl transform hover:scale-105"
+                  style="background: white; color: #FF5722; border: 2px solid #FF5722;"
+                >
+                  <svg class="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+                  </svg>
+                  Создать
+                </RouterLink>
+              </div>
+            </div>
+            
+            <div class="hidden md:block">
+              <div class="relative h-80 md:h-96 rounded-lg overflow-hidden shadow-2xl" style="background: linear-gradient(135deg, #FF5722 0%, #FF7043 100%); display: flex; align-items: center; justify-content: center;">
+                <div class="text-center">
+                  <div class="text-8xl mb-4">📝</div>
+                  <p class="text-white text-xl font-semibold">Ваши идеи в одном месте</p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
-      <!-- Statistics -->
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20 max-w-4xl mx-auto">
-        <div class="rounded-2xl shadow-lg p-8 text-center transition-all duration-300 hover:shadow-2xl hover:scale-105" style="background: white; border: 2px solid #e8ddd5;">
-          <div class="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4" style="background: rgba(166, 124, 82, 0.1); color: #a67c52;">
-            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-            </svg>
+      <div class="w-full py-16 sm:py-20 md:py-24">
+        <div class="max-w-6xl mx-auto">
+          <div class="text-center mb-12 md:mb-16">
+            <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-4" style="color: #1a1a1a;">Почему SNotes?</h2>
+            <p class="text-base sm:text-lg md:text-xl" style="color: #7a7a7a; max-width: 600px; margin: 0 auto;">
+              Все необходимое для продуктивности в одном приложении
+            </p>
           </div>
-          <h3 class="text-4xl font-bold mb-2" style="color: #6b5844;">{{ notesStore.notesCount }}</h3>
-          <p style="color: #999999;">Всего заметок</p>
-        </div>
 
-        <div class="rounded-2xl shadow-lg p-8 text-center transition-all duration-300 hover:shadow-2xl hover:scale-105" style="background: white; border: 2px solid #e8ddd5;">
-          <div class="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4" style="background: rgba(166, 124, 82, 0.1); color: #a67c52;">
-            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
-            </svg>
-          </div>
-          <h3 class="text-4xl font-bold mb-2" style="color: #6b5844;">⚡</h3>
-          <p style="color: #999999;">Молниеносно быстро</p>
-        </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 mb-12 md:mb-16">
+            <div class="p-6 sm:p-8 rounded-xl transition-all duration-300 hover:shadow-xl transform hover:scale-105" style="background: white; border: 1px solid #e0e0e0;">
+              <div class="w-14 h-14 rounded-lg flex items-center justify-center mb-4 text-3xl" style="background: rgba(255, 87, 34, 0.1);">
+                ⚡
+              </div>
+              <h3 class="font-bold text-xl mb-3" style="color: #1a1a1a;">Молниеносно быстро</h3>
+              <p style="color: #7a7a7a; line-height: 1.6;">Создавайте и редактируйте заметки со скоростью мысли. Все работает мгновенно.</p>
+            </div>
 
-        <div class="rounded-2xl shadow-lg p-8 text-center transition-all duration-300 hover:shadow-2xl hover:scale-105" style="background: white; border: 2px solid #e8ddd5;">
-          <div class="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4" style="background: rgba(166, 124, 82, 0.1); color: #a67c52;">
-            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 10h-2m0 0H8m4 0v6m0-6v-2m0 2V8" />
-            </svg>
-          </div>
-          <h3 class="text-4xl font-bold mb-2" style="color: #6b5844;">💎</h3>
-          <p style="color: #999999;">Премиум опыт</p>
-        </div>
-      </div>
-
-      <!-- Features -->
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center max-w-6xl mx-auto">
-        <div>
-          <h2 class="text-4xl font-bold mb-8" style="color: #6b5844;">✨ Возможности</h2>
-          <div class="space-y-6">
-            <div class="flex items-start gap-4">
-              <div class="w-12 h-12 rounded-lg flex items-center justify-center flex-shrink-0 text-2xl" style="background: rgba(166, 124, 82, 0.1); color: #a67c52;">
-                ✍️
-              </div>
-              <div>
-                <h3 class="font-bold text-lg mb-2" style="color: #6b5844;">Создание заметок</h3>
-                <p style="color: #999999;">Создавайте новые заметки с красивым форматированием и предпросмотром</p>
-              </div>
-            </div>
-            
-            <div class="flex items-start gap-4">
-              <div class="w-12 h-12 rounded-lg flex items-center justify-center flex-shrink-0 text-2xl" style="background: rgba(166, 124, 82, 0.1); color: #a67c52;">
-                ✏️
-              </div>
-              <div>
-                <h3 class="font-bold text-lg mb-2" style="color: #6b5844;">Редактирование</h3>
-                <p style="color: #999999;">Изменяйте заметки в любой момент с полной сохранностью данных</p>
-              </div>
-            </div>
-            
-            <div class="flex items-start gap-4">
-              <div class="w-12 h-12 rounded-lg flex items-center justify-center flex-shrink-0 text-2xl" style="background: rgba(166, 124, 82, 0.1); color: #a67c52;">
-                📊
-              </div>
-              <div>
-                <h3 class="font-bold text-lg mb-2" style="color: #6b5844;">Организация</h3>
-                <p style="color: #999999;">Все заметки отсортированы по дате, легко найти нужное</p>
-              </div>
-            </div>
-            
-            <div class="flex items-start gap-4">
-              <div class="w-12 h-12 rounded-lg flex items-center justify-center flex-shrink-0 text-2xl" style="background: rgba(166, 124, 82, 0.1); color: #a67c52;">
+            <div class="p-6 sm:p-8 rounded-xl transition-all duration-300 hover:shadow-xl transform hover:scale-105" style="background: white; border: 1px solid #e0e0e0;">
+              <div class="w-14 h-14 rounded-lg flex items-center justify-center mb-4 text-3xl" style="background: rgba(255, 87, 34, 0.1);">
                 🎨
               </div>
-              <div>
-                <h3 class="font-bold text-lg mb-2" style="color: #6b5844;">Прекрасный дизайн</h3>
-                <p style="color: #999999;">Теплая и уютная цветовая палитра, приятно использовать</p>
+              <h3 class="font-bold text-xl mb-3" style="color: #1a1a1a;">Красивый дизайн</h3>
+              <p style="color: #7a7a7a; line-height: 1.6;">Современный и чистый интерфейс, разработанный с вниманием к деталям.</p>
+            </div>
+
+            <div class="p-6 sm:p-8 rounded-xl transition-all duration-300 hover:shadow-xl transform hover:scale-105" style="background: white; border: 1px solid #e0e0e0;">
+              <div class="w-14 h-14 rounded-lg flex items-center justify-center mb-4 text-3xl" style="background: rgba(255, 87, 34, 0.1);">
+                📱
               </div>
+              <h3 class="font-bold text-xl mb-3" style="color: #1a1a1a;">Адаптивный дизайн</h3>
+              <p style="color: #7a7a7a; line-height: 1.6;">Работает на любом устройстве - телефоне, планшете или компьютере.</p>
+            </div>
+
+            <div class="p-6 sm:p-8 rounded-xl transition-all duration-300 hover:shadow-xl transform hover:scale-105" style="background: white; border: 1px solid #e0e0e0;">
+              <div class="w-14 h-14 rounded-lg flex items-center justify-center mb-4 text-3xl" style="background: rgba(255, 87, 34, 0.1);">
+                🔍
+              </div>
+              <h3 class="font-bold text-xl mb-3" style="color: #1a1a1a;">Поиск</h3>
+              <p style="color: #7a7a7a; line-height: 1.6;">Быстро найдите нужную заметку с помощью мощной функции поиска.</p>
+            </div>
+
+            <div class="p-6 sm:p-8 rounded-xl transition-all duration-300 hover:shadow-xl transform hover:scale-105" style="background: white; border: 1px solid #e0e0e0;">
+              <div class="w-14 h-14 rounded-lg flex items-center justify-center mb-4 text-3xl" style="background: rgba(255, 87, 34, 0.1);">
+                📊
+              </div>
+              <h3 class="font-bold text-xl mb-3" style="color: #1a1a1a;">Статистика</h3>
+              <p style="color: #7a7a7a; line-height: 1.6;">Отслеживайте количество заметок и следите за своей продуктивностью.</p>
+            </div>
+
+            <div class="p-6 sm:p-8 rounded-xl transition-all duration-300 hover:shadow-xl transform hover:scale-105" style="background: white; border: 1px solid #e0e0e0;">
+              <div class="w-14 h-14 rounded-lg flex items-center justify-center mb-4 text-3xl" style="background: rgba(255, 87, 34, 0.1);">
+                🚀
+              </div>
+              <h3 class="font-bold text-xl mb-3" style="color: #1a1a1a;">Простота</h3>
+              <p style="color: #7a7a7a; line-height: 1.6;">Интуитивный интерфейс - не требует обучения, все просто и понятно.</p>
             </div>
           </div>
-        </div>
 
-        <div class="rounded-2xl shadow-2xl p-10 transition-all duration-300 hover:shadow-xl hover:scale-105" style="background: white; border: 2px solid #e8ddd5;">
-          <h3 class="text-2xl font-bold mb-4" style="color: #6b5844;">🚀 Начните прямо сейчас!</h3>
-          <p class="mb-8" style="color: #999999;">
-            Создайте свою первую заметку и почувствуйте удобство работы с красивым интерфейсом. Все просто и интуитивно!
-          </p>
-          <RouterLink 
-            to="/notes/create" 
-            class="w-full py-4 rounded-xl font-bold text-lg transition-all duration-300 inline-flex items-center justify-center gap-2 shadow-lg hover:shadow-xl transform hover:scale-105"
-            style="background: linear-gradient(135deg, #a67c52 0%, #8b6f47 100%); color: white;"
-          >
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
-            </svg>
-            Создать первую заметку
-          </RouterLink>
+          <div class="text-center">
+            <h3 class="text-2xl sm:text-3xl md:text-4xl font-bold mb-6" style="color: #1a1a1a;">Готовы начать?</h3>
+            <p class="text-base sm:text-lg mb-8" style="color: #7a7a7a; max-width: 500px; margin: 0 auto 2rem;">
+              Создайте свою первую заметку и начните организовывать свои мысли прямо сейчас
+            </p>
+            <RouterLink 
+              to="/notes/create" 
+              class="inline-block px-10 sm:px-12 py-4 rounded-lg font-bold text-lg transition-all duration-300 shadow-xl hover:shadow-2xl transform hover:scale-105"
+              style="background: #FF5722; color: white;"
+            >
+              Начать сейчас
+            </RouterLink>
+          </div>
         </div>
       </div>
     </div>

@@ -1,4 +1,3 @@
-<!-- frontend/src/components/NoteForm.vue -->
 <script setup>
 import { ref, reactive, computed, onMounted } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
@@ -27,7 +26,6 @@ const form = reactive({
 const errors = ref({})
 const saving = ref(false)
 
-// Валидация
 const validateForm = () => {
   errors.value = {}
   
@@ -46,7 +44,6 @@ const validateForm = () => {
   return Object.keys(errors.value).length === 0
 }
 
-// Загрузка существующей заметки для редактирования
 onMounted(async () => {
   if (isEditMode.value) {
     const noteId = parseInt(route.params.id)
@@ -61,7 +58,6 @@ onMounted(async () => {
   }
 })
 
-// Сохранение заметки
 const saveNote = async () => {
   if (!validateForm()) return
   
@@ -88,12 +84,10 @@ const saveNote = async () => {
   }
 }
 
-// Отмена
 const cancel = () => {
   router.push('/notes')
 }
 
-// Обработка изменений в форме для очистки ошибок
 const clearFieldError = (field) => {
   if (errors.value[field]) {
     delete errors.value[field]
@@ -102,30 +96,27 @@ const clearFieldError = (field) => {
 </script>
 
 <template>
-  <div class="w-full min-h-screen p-6" style="background: linear-gradient(135deg, #f5f1ed 0%, #f0ebe7 100%);">
+  <div class="w-full min-h-screen px-4 sm:px-6 lg:px-8 py-6 md:py-8" style="background: #f8f7f5;">
     <div class="max-w-3xl mx-auto">
-      <!-- Header -->
-      <div class="mb-8 flex items-center gap-4">
+      <div class="mb-6 md:mb-8 flex items-center gap-2 sm:gap-4">
         <button
           @click="cancel"
-          class="p-2 rounded-lg transition-all duration-300 hover:shadow-lg"
-          style="background: white; color: #a67c52; border: 1px solid #e8ddd5;"
+          class="p-2 rounded-lg transition-all duration-300 hover:shadow-lg flex-shrink-0"
+          style="background: white; color: #FF5722; border: 1px solid #e0e0e0;"
         >
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg class="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
           </svg>
         </button>
-        <h1 class="text-4xl font-bold" style="color: #6b5844;">
-          {{ pageTitle === 'Редактировать заметку' ? '✏️ Редактировать заметку' : '✍️ Создать заметку' }}
+        <h1 class="text-2xl sm:text-3xl md:text-4xl font-bold truncate" style="color: #1a1a1a;">
+          {{ pageTitle === 'Редактировать заметку' ? '✏️ Редактировать' : '✍️ Создать' }}
         </h1>
       </div>
 
-      <!-- Form -->
-      <form @submit.prevent="saveNote" class="space-y-6">
-        <!-- Title Field -->
+      <form @submit.prevent="saveNote" class="space-y-4 md:space-y-6">
         <div>
-          <label for="title" class="block text-sm font-semibold mb-2" style="color: #6b5844;">
-            Заголовок *
+          <label for="title" class="block text-sm font-semibold mb-2" style="color: #1a1a1a;">
+            Заголовок <span style="color: #dc2626;">*</span>
           </label>
           <input
             id="title"
@@ -133,52 +124,50 @@ const clearFieldError = (field) => {
             @input="clearFieldError('title')"
             type="text"
             placeholder="Введите заголовок заметки..."
-            class="w-full px-5 py-3 rounded-xl border-2 transition-all duration-300 font-medium"
-            style="border-color: #e8ddd5; background: white; color: #3d3d3d;"
-            @focus="$event.target.style.borderColor = '#a67c52'; $event.target.style.boxShadow = '0 0 0 3px rgba(166, 124, 82, 0.1)'"
-            @blur="$event.target.style.borderColor = '#e8ddd5'; $event.target.style.boxShadow = 'none'"
-            :style="{ borderColor: errors.title ? '#dc2626' : '#e8ddd5' }"
+            class="w-full px-4 sm:px-5 py-2 sm:py-3 rounded-xl border-2 transition-all duration-300 text-sm sm:text-base"
+            style="border-color: #e0e0e0; background: white; color: #3d3d3d;"
+            @focus="$event.target.style.borderColor = '#FF5722'; $event.target.style.boxShadow = '0 0 0 3px rgba(255, 87, 34, 0.1)'"
+            @blur="$event.target.style.borderColor = '#e0e0e0'; $event.target.style.boxShadow = 'none'"
+            :style="{ borderColor: errors.title ? '#dc2626' : '#e0e0e0' }"
           />
           <div class="flex justify-between mt-2">
-            <p v-if="errors.title" class="text-sm" style="color: #dc2626;">⚠️ {{ errors.title }}</p>
-            <p class="text-sm ml-auto" style="color: #999999;">{{ form.title.length }}/200</p>
+            <p v-if="errors.title" class="text-xs sm:text-sm" style="color: #dc2626;">⚠️ {{ errors.title }}</p>
+            <p class="text-xs sm:text-sm ml-auto" style="color: #999999;">{{ form.title.length }}/200</p>
           </div>
         </div>
 
-        <!-- Content Field -->
         <div>
-          <label for="content" class="block text-sm font-semibold mb-2" style="color: #6b5844;">
-            Содержание *
+          <label for="content" class="block text-sm font-semibold mb-2" style="color: #1a1a1a;">
+            Содержание <span style="color: #dc2626;">*</span>
           </label>
           <textarea
             id="content"
             v-model="form.content"
             @input="clearFieldError('content')"
-            rows="12"
+            rows="8"
             placeholder="Введите содержание заметки..."
-            class="w-full px-5 py-3 rounded-xl border-2 transition-all duration-300 font-medium resize-none"
-            style="border-color: #e8ddd5; background: white; color: #3d3d3d; font-family: 'Segoe UI', sans-serif;"
-            @focus="$event.target.style.borderColor = '#a67c52'; $event.target.style.boxShadow = '0 0 0 3px rgba(166, 124, 82, 0.1)'"
-            @blur="$event.target.style.borderColor = '#e8ddd5'; $event.target.style.boxShadow = 'none'"
-            :style="{ borderColor: errors.content ? '#dc2626' : '#e8ddd5' }"
+            class="w-full px-4 sm:px-5 py-2 sm:py-3 rounded-xl border-2 transition-all duration-300 resize-none text-sm sm:text-base"
+            style="border-color: #e0e0e0; background: white; color: #3d3d3d; font-family: 'Segoe UI', sans-serif;"
+            @focus="$event.target.style.borderColor = '#FF5722'; $event.target.style.boxShadow = '0 0 0 3px rgba(255, 87, 34, 0.1)'"
+            @blur="$event.target.style.borderColor = '#e0e0e0'; $event.target.style.boxShadow = 'none'"
+            :style="{ borderColor: errors.content ? '#dc2626' : '#e0e0e0' }"
           ></textarea>
           <div class="flex justify-between mt-2">
-            <p v-if="errors.content" class="text-sm" style="color: #dc2626;">⚠️ {{ errors.content }}</p>
-            <p class="text-sm ml-auto" style="color: #999999;">{{ form.content.length }}/10000</p>
+            <p v-if="errors.content" class="text-xs sm:text-sm" style="color: #dc2626;">⚠️ {{ errors.content }}</p>
+            <p class="text-xs sm:text-sm ml-auto" style="color: #999999;">{{ form.content.length }}/10000</p>
           </div>
         </div>
 
-        <!-- Actions -->
-        <div class="flex gap-4 pt-8">
+        <div class="flex flex-col sm:flex-row gap-3 pt-6 md:pt-8">
           <button
             type="submit"
             :disabled="saving || notesStore.loading"
-            class="flex-1 px-8 py-3 rounded-xl font-bold transition-all duration-300 flex items-center justify-center gap-2 shadow-lg hover:shadow-xl transform hover:scale-105 disabled:opacity-50"
-            style="background: linear-gradient(135deg, #a67c52 0%, #8b6f47 100%); color: white;"
+            class="flex-1 px-6 sm:px-8 py-3 rounded-xl font-bold transition-all duration-300 flex items-center justify-center gap-2 shadow-lg hover:shadow-xl transform hover:scale-105 disabled:opacity-50 text-sm sm:text-base text-white"
+            style="background: #FF5722;"
           >
             <svg 
               v-if="saving || notesStore.loading" 
-              class="animate-spin h-5 w-5" 
+              class="animate-spin h-4 w-4 sm:h-5 sm:w-5" 
               fill="none" 
               viewBox="0 0 24 24"
             >
@@ -191,22 +180,21 @@ const clearFieldError = (field) => {
           <button
             type="button"
             @click="cancel"
-            class="px-8 py-3 rounded-xl font-semibold transition-all duration-300 hover:shadow-lg"
-            style="background: white; color: #999999; border: 2px solid #e8ddd5;"
+            class="flex-1 sm:flex-none px-6 sm:px-8 py-3 rounded-xl font-semibold transition-all duration-300 hover:shadow-lg text-sm sm:text-base"
+            style="background: white; color: #999999; border: 2px solid #e0e0e0;"
           >
             Отмена
           </button>
         </div>
       </form>
 
-      <!-- Preview Section -->
-      <div v-if="form.content" class="mt-12 pt-8" style="border-top: 2px solid #e8ddd5;">
-        <h3 class="text-2xl font-bold mb-6" style="color: #6b5844;">👁️ Предварительный просмотр</h3>
-        <div class="rounded-xl p-8 shadow-lg" style="background: white; border: 1px solid #e8ddd5;">
-          <h4 class="text-2xl font-bold mb-4" style="color: #6b5844;">
+      <div v-if="form.content" class="mt-10 md:mt-12 pt-6 md:pt-8" style="border-top: 2px solid #e0e0e0;">
+        <h3 class="text-xl sm:text-2xl font-bold mb-4 md:mb-6" style="color: #1a1a1a;">👁️ Просмотр</h3>
+        <div class="rounded-xl p-5 sm:p-8 shadow-lg" style="background: white; border: 1px solid #e0e0e0;">
+          <h4 class="text-lg sm:text-2xl font-bold mb-4" style="color: #1a1a1a;">
             {{ form.title || '(без заголовка)' }}
           </h4>
-          <p class="whitespace-pre-wrap leading-relaxed text-base" style="color: #7a7a7a;">
+          <p class="whitespace-pre-wrap leading-relaxed text-sm sm:text-base" style="color: #7a7a7a;">
             {{ form.content }}
           </p>
         </div>
@@ -214,3 +202,15 @@ const clearFieldError = (field) => {
     </div>
   </div>
 </template>
+
+<style scoped>
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+</style>
